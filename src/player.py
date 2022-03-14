@@ -2,12 +2,12 @@ import pygame
 
 
 class Player(pygame.sprite.Sprite):
-	def __init__(self, pos, groups, obstacle_sprites):
+	def __init__(self, level, pos, groups):
 		super().__init__(groups)
 		self.image = pygame.image.load('../graphics/test/player.png').convert_alpha()
 		self.rect = self.image.get_rect(topleft=pos)
 
-		self.obstacle_sprites = obstacle_sprites
+		self.obstacle_sprites = level.obstacle_sprites
 
 		self.direction = pygame.math.Vector2()
 		self.speed = 5
@@ -46,6 +46,7 @@ class Player(pygame.sprite.Sprite):
 						self.rect.right = sprite.rect.left
 					else:
 						self.rect.left = sprite.rect.right
+
 		if direction == 'vertical':
 			for sprite in self.obstacle_sprites:
 				if sprite.rect.colliderect(self.rect):
