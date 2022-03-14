@@ -16,7 +16,7 @@ class Level:
 		# sprite setup
 		self.create_map()
 
-		self.player: Player
+		self.player: Player = None
 
 	def create_map(self):
 		for y_index, row in enumerate(WORLD_MAP):
@@ -26,7 +26,7 @@ class Level:
 				if col == 'x':
 					Tile((x, y), (self.visible_sprites, self.obstacle_sprites))
 				if col == 'p':
-					self.player = Player((x, y), (self.visible_sprites,))
+					self.player = Player((x, y), (self.visible_sprites,), self.obstacle_sprites)
 
 	def run(self):
 		# update and draw the game
